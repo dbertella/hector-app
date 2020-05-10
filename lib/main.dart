@@ -1,3 +1,5 @@
+import 'package:assets_audio_player/assets_audio_player.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyPageView());
@@ -6,11 +8,13 @@ List<List<String>> pages = [
   ['assets/images/Cover.png'],
   [
     'assets/images/page1.png',
-    'Hector is a little dinosaur\nwho lives in the forest.\nHe spends all his days eating flowers\nand having a rest.'
+    'Hector is a little dinosaur\nwho lives in the forest.\nHe spends all his days eating flowers\nand having a rest.',
+    'assets/audios/page1.mp3',
   ],
   [
     'assets/images/page2.png',
     'But you see, poor Hector\nis very, very slow.\nFlowers are not so tasty,\nbut what else could he eat?',
+    'assets/audios/page2.mp3',
   ],
   [
     'assets/images/page3.png',
@@ -111,6 +115,55 @@ class _MyPageViewState extends State<MyPageView> {
     super.dispose();
   }
 
+  final assetsAudioPlayer = AssetsAudioPlayer();
+
+  List<Widget> pageSlides() {
+    var list = pages.map(
+      (content) {
+        String path = content[0];
+        String text = content.length >= 2 ? content[1] : '';
+        return Stack(
+          children: <Widget>[
+            Container(
+              width: double.infinity,
+              height: double.infinity,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(path),
+                  fit: BoxFit.contain,
+                ),
+              ),
+            ),
+            text.isEmpty
+                ? SizedBox.shrink()
+                : Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.white.withOpacity(0.9),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.all(16.0),
+                        child: Text(
+                          text,
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.walterTurncoat(
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.blueGrey, // Color(0xff185122),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+          ],
+        );
+      },
+    ).toList();
+    return list;
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -119,87 +172,64 @@ class _MyPageViewState extends State<MyPageView> {
           primarySwatch: Colors.green,
           backgroundColor: Colors.white),
       home: Scaffold(
-          body: Stack(children: <Widget>[
-        PageView(
-            controller: _pageController,
-            children: pages.map((content) {
-              String path = content[0];
-              String text = content.length == 2 ? content[1] : '';
-              return Stack(children: <Widget>[
-                Container(
-                  width: double.infinity,
-                  height: double.infinity,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage(path),
-                      fit: BoxFit.contain,
-                    ),
-                  ),
-                ),
-                text.isEmpty
-                    ? SizedBox.shrink()
-                    : Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.white.withOpacity(0.7),
-                          ),
-                          child: Padding(
-                            padding: EdgeInsets.all(16.0),
-                            child: Text(
-                              text,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 16.0,
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xff185122),
-                              ),
-                            ),
-                          ),
-                        ),
-                      )
-              ]);
-            }).toList()),
-        // Align(
-        //   alignment: Alignment.bottomCenter,
-        //   child: Row(
-        //     children: <Widget>[
-        //       FlatButton(
-        //         onPressed: () {
-        //           if (_pageController.hasClients) {
-        //             _pageController.animateToPage(
-        //               0,
-        //               duration: const Duration(milliseconds: 400),
-        //               curve: Curves.easeInOut,
-        //             );
-        //           }
-        //         },
-        //         child: Text(
-        //           "First",
-        //         ),
-        //       ),
-        //       Text(_pageController.page.round().toString() +
-        //           '/' +
-        //           pages.length.toString()),
-        //       FlatButton(
-        //         onPressed: () {
-        //           if (_pageController.hasClients) {
-        //             _pageController.animateToPage(
-        //               // _pageController.page.round() + 1,
-        //               pages.length,
-        //               duration: const Duration(milliseconds: 400),
-        //               curve: Curves.easeInOut,
-        //             );
-        //           }
-        //         },
-        //         child: Text(
-        //           "Last",
-        //         ),
-        //       )
-        //     ],
-        //   ),
-        // ),
-      ])),
+        body: Stack(
+          children: <Widget>[
+            PageView(
+              controller: _pageController,
+              onPageChanged: (int page) {
+                String audioPath = pages[page][2];
+                if (audioPath.isNotEmpty) {
+                  assetsAudioPlayer.open(
+                    Audio(audioPath),
+                    respectSilentMode: true,
+                  );
+                  assetsAudioPlayer.play();
+                }
+              },
+              children: pageSlides(),
+            ),
+            // Align(
+            //   alignment: Alignment.bottomCenter,
+            //   child: Row(
+            //     children: <Widget>[
+            //       FlatButton(
+            //         onPressed: () {
+            //           if (_pageController.hasClients) {
+            //             _pageController.animateToPage(
+            //               0,
+            //               duration: const Duration(milliseconds: 400),
+            //               curve: Curves.easeInOut,
+            //             );
+            //           }
+            //         },
+            //         child: Text(
+            //           "First",
+            //         ),
+            //       ),
+            //       Text(_pageController.page.round().toString() +
+            //           '/' +
+            //           pages.length.toString()),
+            //       FlatButton(
+            //         onPressed: () {
+            //           if (_pageController.hasClients) {
+            //             _pageController.animateToPage(
+            //               // _pageController.page.round() + 1,
+            //               pages.length,
+            //               duration: const Duration(milliseconds: 400),
+            //               curve: Curves.easeInOut,
+            //             );
+            //           }
+            //         },
+            //         child: Text(
+            //           "Last",
+            //         ),
+            //       )
+            //     ],
+            //   ),
+            // ),
+          ],
+        ),
+      ),
     );
   }
 }
