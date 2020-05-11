@@ -30,7 +30,7 @@ class _VolumeSelectorWidgetState extends State<VolumeSelector> {
       padding: const EdgeInsets.all(8.0),
       child: _isVolumeUp
           ? FlatButton(
-              padding: EdgeInsets.all(24),
+              padding: EdgeInsets.all(16),
               onPressed: () {
                 setState(() {
                   _isVolumeUp = false;
@@ -43,7 +43,7 @@ class _VolumeSelectorWidgetState extends State<VolumeSelector> {
               ),
             )
           : FlatButton(
-              padding: EdgeInsets.all(24),
+              padding: EdgeInsets.all(16),
               onPressed: () {
                 setState(() {
                   _isVolumeUp = true;

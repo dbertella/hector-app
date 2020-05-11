@@ -42,10 +42,11 @@ class _MyPageViewState extends State<MyPageView> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-          // This is the theme of your application.
-          primarySwatch: Colors.green,
-          backgroundColor: Colors.white),
+      // theme: ThemeData(
+      //     // This is the theme of your application.
+
+      //     primarySwatch: Colors.green,
+      //     backgroundColor: Colors.white),
       home: Scaffold(
         body: Stack(
           children: <Widget>[
@@ -92,7 +93,7 @@ class _MyPageViewState extends State<MyPageView> {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: FlatButton(
-                  padding: EdgeInsets.all(24),
+                  padding: EdgeInsets.all(16),
                   onPressed: () {
                     if (_pageController.hasClients) {
                       _pageController.animateToPage(
