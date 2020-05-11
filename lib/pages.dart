@@ -1,5 +1,5 @@
 List<List<String>> pages = [
-  ['assets/images/Cover.png', '', ''],
+  ['assets/images/Cover.png', 'Hector the little dinosaur', ''],
   [
     'assets/images/page1.png',
     'Hector is a little dinosaur\nwho lives in the forest.\nHe spends all his days eating flowers\nand having a rest.',

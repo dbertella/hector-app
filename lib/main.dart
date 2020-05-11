@@ -3,8 +3,7 @@ import 'dart:async';
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
 import 'package:hector_app/PageSlide.dart';
-import 'package:hector_app/PlayingControls.dart';
-import 'package:hector_app/PositionSeekWidget.dart';
+import 'package:hector_app/ValumeSelector.dart';
 import 'package:hector_app/pages.dart';
 
 void main() => runApp(MyPageView());
@@ -51,147 +50,63 @@ class _MyPageViewState extends State<MyPageView> {
         body: Stack(
           children: <Widget>[
             PageView(
-                controller: _pageController,
-                onPageChanged: (int page) {
-                  String audioPath = pages[page].skip(2).take(1).first;
-                  if (audioPath.isNotEmpty) {
-                    _assetsAudioPlayer.open(
-                      Audio(audioPath),
-                      respectSilentMode: true,
-                    );
-                    _assetsAudioPlayer.play();
-                  } else {
-                    _assetsAudioPlayer.stop();
-                  }
+              controller: _pageController,
+              onPageChanged: (int page) {
+                String audioPath = pages[page].skip(2).take(1).first;
+                if (audioPath.isNotEmpty) {
+                  _assetsAudioPlayer.open(
+                    Audio(audioPath),
+                    respectSilentMode: true,
+                  );
+                  _assetsAudioPlayer.play();
+                } else {
+                  _assetsAudioPlayer.stop();
+                }
+              },
+              children: pages.map(
+                (content) {
+                  return PageSlide(
+                      path: content.take(1).first,
+                      text: content.skip(1).take(1).first);
                 },
-                children: pages.map(
-                  (content) {
-                    return PageSlide(
-                        path: content.take(1).first,
-                        text: content.skip(1).take(1).first);
-                  },
-                ).toList()),
+              ).toList(),
+            ),
             Align(
               alignment: Alignment.topRight,
               child: StreamBuilder(
-                  stream: _assetsAudioPlayer.current,
-                  builder: (context, snapshot) {
-                    if (!snapshot.hasData) {
-                      return SizedBox();
-                    }
-                    return StreamBuilder(
-                      stream: _assetsAudioPlayer.isPlaying,
-                      initialData: false,
-                      builder: (context, snapshotPlaying) {
-                        final isPlaying = snapshotPlaying.data;
-                        return Row(
-                          children: <Widget>[
-                            PlayingControls(
-                              isPlaying: isPlaying,
-                              onPlay: () {
-                                _assetsAudioPlayer.playOrPause();
-                              },
-                            ),
-                            StreamBuilder(
-                              stream: _assetsAudioPlayer.realtimePlayingInfos,
-                              builder: (context, snapshot) {
-                                if (!snapshot.hasData) {
-                                  return SizedBox();
-                                }
-                                final RealtimePlayingInfos infos =
-                                    snapshot.data;
-                                return PositionSeekWidget(
-                                    isPlaying: isPlaying,
-                                    currentPosition: infos.currentPosition,
-                                    duration: infos.duration,
-                                    seekTo: (to) {
-                                      _assetsAudioPlayer.seek(to);
-                                    },
-                                    setStop: () {
-                                      _assetsAudioPlayer.stop();
-                                    });
-                              },
-                            )
-                          ],
-                        );
-                      },
-                    );
-                  }),
+                stream: _assetsAudioPlayer.volume,
+                initialData: AssetsAudioPlayer.defaultVolume,
+                builder: (context, snapshot) {
+                  final double volume = snapshot.data;
+                  return VolumeSelector(
+                    volume: volume,
+                    onChange: (v) {
+                      _assetsAudioPlayer.setVolume(v);
+                    },
+                  );
+                },
+              ),
             ),
             Align(
-                // alignment: Alignment.topRight,
-                // child: StreamBuilder(
-                //     stream: _assetsAudioPlayer.current,
-                //     builder: (context, snapshot) {
-                //       if (!snapshot.hasData) {
-                //         return SizedBox();
-                //       }
-                //       return ;
-                //     }),
-                // SizedBox(
-                //   height: 20,
-                // ),
-                // StreamBuilder(
-                //     stream: _assetsAudioPlayer.current,
-                //     builder: (
-                //       BuildContext context,
-                //       AsyncSnapshot<Playing> snapshot,
-                //     ) {
-                //       final Playing playing = snapshot.data;
-                //       print(playing);
-                //       if (playing != null) {
-                //         return FlatButton(
-                //           onPressed: () {
-                //             _assetsAudioPlayer.stop();
-                //           },
-                //           child: Icon(Icons.pause_circle_outline),
-                //         );
-                //       }
-                //       return FlatButton(
-                //         onPressed: () {
-                //           _assetsAudioPlayer.play();
-                //         },
-                //         child: Icon(Icons.play_circle_outline),
-                //       );
-                //     })
-                ),
-            Align(
               alignment: Alignment.topLeft,
-              child: Row(
-                children: <Widget>[
-                  FlatButton(
-                    onPressed: () {
-                      if (_pageController.hasClients) {
-                        _pageController.animateToPage(
-                          0,
-                          duration: const Duration(milliseconds: 400),
-                          curve: Curves.easeInOut,
-                        );
-                      }
-                    },
-                    child: Icon(
-                      Icons.home,
-                    ),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: FlatButton(
+                  padding: EdgeInsets.all(24),
+                  onPressed: () {
+                    if (_pageController.hasClients) {
+                      _pageController.animateToPage(
+                        0,
+                        duration: const Duration(milliseconds: 400),
+                        curve: Curves.easeInOut,
+                      );
+                    }
+                  },
+                  child: Icon(
+                    Icons.home,
+                    size: 32,
                   ),
-                  // Text(_pageController.page.round().toString() +
-                  //     '/' +
-                  //     pages.length.toString()),
-                  // FlatButton(
-                  //   onPressed: () {
-                  //     if (_pageController.hasClients) {
-                  //       _pageController.animateToPage(
-                  //         // _pageController.page.round() + 1,
-                  //         pages.length,
-                  //         duration: const Duration(milliseconds: 400),
-                  //         curve: Curves.easeInOut,
-                  //       );
-                  //     }
-                  //   },
-                  //   child: Text(
-                  //     "Last",
-                  //   ),
-                  // )
-                ],
+                ),
               ),
             ),
           ],
