@@ -44,7 +44,7 @@ class PageSlide extends StatelessWidget {
                       child: Text(
                         text,
                         textAlign: TextAlign.center,
-                        style: GoogleFonts.walterTurncoat(
+                        style: GoogleFonts.gloriaHallelujah(
                           fontSize: SizeConfig.safeBlockHorizontal * 2,
                           fontWeight: FontWeight.bold,
                           color: Colors.blueGrey, // Color(0xff185122),

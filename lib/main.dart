@@ -43,45 +43,51 @@ class HomePage extends StatelessWidget {
         elevation: 0.0,
         title: Text(
           'Hector the little dinosaur',
-          style: GoogleFonts.walterTurncoat(
-            fontSize: SizeConfig.safeBlockHorizontal * 2,
+          style: GoogleFonts.gloriaHallelujah(
+            fontSize: SizeConfig.safeBlockHorizontal * 2.2,
             fontWeight: FontWeight.bold,
-            color: Colors.blueGrey,
+            color: Color(0xff185122),
           ),
         ),
       ),
       body: Center(
         child: FlatButton(
+          padding: EdgeInsets.all(0),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(280.0),
+            side: BorderSide(color: Color(0xff185122), width: 5.0),
+          ),
           onPressed: () {
             Navigator.pushNamed(context, '/story');
           },
-          child: SizedBox(
-            width: 200.0,
-            height: 250.0,
-            child: Stack(
-              children: [
-                Image.asset('assets/images/hector-logo.png'),
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.white.withOpacity(0.9),
-                    ),
-                    child: Padding(
-                      padding: EdgeInsets.all(12.0),
-                      child: Text(
-                        'Read the story',
-                        style: GoogleFonts.walterTurncoat(
-                          fontSize: SizeConfig.safeBlockHorizontal * 2,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.blueGrey,
+          child: ClipOval(
+            child: SizedBox(
+              width: 300.0,
+              height: 300.0,
+              child: Stack(
+                children: [
+                  Image.asset('assets/images/hector-logo.png'),
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.9),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.fromLTRB(60, 8, 60, 30),
+                        child: Text(
+                          'Read the story',
+                          style: GoogleFonts.gloriaHallelujah(
+                            fontSize: SizeConfig.safeBlockHorizontal * 2,
+                            // fontWeight: FontWeight.bold,
+                            color: Color(0xff185122),
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

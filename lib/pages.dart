@@ -23,7 +23,7 @@ Flowers are not so tasty, but what else could he eat?""",
     """“Hi Bunny. How are you?” “Hi Hector, not eating flowers today?”
 “I was just about to try this carrot”, replies Hector.
 “Interesting”, the bunny says, thinking for a minute...""",
-    '',
+    'assets/audios/page4.mp3',
   ],
   [
     'assets/images/page5.png',
@@ -41,7 +41,7 @@ Something sweet and juicy, he’s thinking. But can you see it?""",
     'assets/images/page7.png',
     """Oh look, an apple! That must be good.
 Can you see anyone who might steal his food?""",
-    '',
+    'assets/audios/page7.mp3',
   ],
   [
     'assets/images/page8.png',
@@ -71,7 +71,7 @@ Hopefully no one will steal his food. Who else might want this salad?""",
     'assets/images/page12.png',
     """Hector wants to run. But he’s very, very slow.
 Just a few more steps. But the snail is getting closer.""",
-    '',
+    'assets/audios/page12.mp3',
   ],
   [
     'assets/images/page13.png',
