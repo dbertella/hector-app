@@ -51,44 +51,40 @@ class HomePage extends StatelessWidget {
         ),
       ),
       body: Center(
-        child: FlatButton(
-          padding: EdgeInsets.all(0),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(280.0),
-            side: BorderSide(color: Color(0xff185122), width: 5.0),
-          ),
-          onPressed: () {
-            Navigator.pushNamed(context, '/story');
-          },
-          child: ClipOval(
-            child: SizedBox(
-              width: 300.0,
-              height: 300.0,
-              child: Stack(
-                children: [
-                  Image.asset('assets/images/hector-logo.png'),
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.9),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.fromLTRB(60, 8, 60, 30),
-                        child: Text(
-                          'Read the story',
-                          style: GoogleFonts.gloriaHallelujah(
-                            fontSize: SizeConfig.safeBlockHorizontal * 2,
-                            // fontWeight: FontWeight.bold,
-                            color: Color(0xff185122),
-                          ),
-                        ),
+        child: SizedBox(
+          width: 300.0,
+          height: 320.0,
+          child: Stack(
+            children: [
+              ClipOval(
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(280.0),
+                    border: Border.all(color: Color(0xff185122), width: 5.0),
+                  ),
+                  child: Image.asset('assets/images/hector-logo.png'),
+                ),
+              ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: RaisedButton(
+                  color: Color(0xfe185122),
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/story');
+                  },
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(42, 12, 42, 12),
+                    child: Text(
+                      'Read the story',
+                      style: GoogleFonts.gloriaHallelujah(
+                        fontSize: SizeConfig.safeBlockHorizontal * 2,
+                        color: Colors.white,
                       ),
                     ),
                   ),
-                ],
+                ),
               ),
-            ),
+            ],
           ),
         ),
       ),
