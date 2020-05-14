@@ -1,116 +1,89 @@
-import 'dart:async';
-
-import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
-import 'package:hector_app/PageSlide.dart';
-import 'package:hector_app/ValumeSelector.dart';
-import 'package:hector_app/pages.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:hector_app/SizeConfig.dart';
+import 'package:hector_app/Story.dart';
 
-void main() => runApp(MyPageView());
+class Page {
+  final String route;
+  final WidgetBuilder builder;
 
-class MyPageView extends StatefulWidget {
-  MyPageView({Key key}) : super(key: key);
-
-  _MyPageViewState createState() => _MyPageViewState();
+  const Page({this.route, this.builder});
 }
 
-class _MyPageViewState extends State<MyPageView> {
-  PageController _pageController;
-  final List<StreamSubscription> _subscriptions = [];
+final routing = [
+  Page(route: Story.routeName, builder: (context) => Story()),
+];
 
-  final _assetsAudioPlayer = AssetsAudioPlayer();
+final Map<String, WidgetBuilder> routes =
+    Map.fromEntries(routing.map((d) => MapEntry(d.route, d.builder)));
 
-  @override
-  void initState() {
-    super.initState();
-    _pageController = PageController();
+void main() => runApp(StoryApp());
 
-    _subscriptions.add(_assetsAudioPlayer.isPlaying.listen((data) {
-      print("playing : $data");
-    }));
-    _subscriptions.add(_assetsAudioPlayer.current.listen((data) {
-      print("current : $data");
-    }));
-  }
-
-  @override
-  void dispose() {
-    _pageController.dispose();
-    super.dispose();
-  }
+class StoryApp extends StatelessWidget {
+  StoryApp({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      // theme: ThemeData(
-      //     // This is the theme of your application.
+      title: 'Hector the little dinosaur',
+      routes: routes,
+      home: HomePage(),
+    );
+  }
+}
 
-      //     primarySwatch: Colors.green,
-      //     backgroundColor: Colors.white),
-      home: Scaffold(
-        body: Stack(
-          children: <Widget>[
-            PageView(
-              controller: _pageController,
-              onPageChanged: (int page) {
-                String audioPath = pages[page].skip(2).take(1).first;
-                if (audioPath.isNotEmpty) {
-                  _assetsAudioPlayer.open(
-                    Audio(audioPath),
-                    respectSilentMode: true,
-                  );
-                  _assetsAudioPlayer.play();
-                } else {
-                  _assetsAudioPlayer.stop();
-                }
-              },
-              children: pages.map(
-                (content) {
-                  return PageSlide(
-                      path: content.take(1).first,
-                      text: content.skip(1).take(1).first);
-                },
-              ).toList(),
-            ),
-            Align(
-              alignment: Alignment.topRight,
-              child: StreamBuilder(
-                stream: _assetsAudioPlayer.volume,
-                initialData: AssetsAudioPlayer.defaultVolume,
-                builder: (context, snapshot) {
-                  final double volume = snapshot.data;
-                  return VolumeSelector(
-                    volume: volume,
-                    onChange: (v) {
-                      _assetsAudioPlayer.setVolume(v);
-                    },
-                  );
-                },
-              ),
-            ),
-            Align(
-              alignment: Alignment.topLeft,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: FlatButton(
-                  padding: EdgeInsets.all(16),
-                  onPressed: () {
-                    if (_pageController.hasClients) {
-                      _pageController.animateToPage(
-                        0,
-                        duration: const Duration(milliseconds: 400),
-                        curve: Curves.easeInOut,
-                      );
-                    }
-                  },
-                  child: Icon(
-                    Icons.home,
-                    size: 32,
+class HomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    SizeConfig().init(context);
+
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0.0,
+        title: Text(
+          'Hector the little dinosaur',
+          style: GoogleFonts.walterTurncoat(
+            fontSize: SizeConfig.safeBlockHorizontal * 2,
+            fontWeight: FontWeight.bold,
+            color: Colors.blueGrey,
+          ),
+        ),
+      ),
+      body: Center(
+        child: FlatButton(
+          onPressed: () {
+            Navigator.pushNamed(context, '/story');
+          },
+          child: SizedBox(
+            width: 200.0,
+            height: 250.0,
+            child: Stack(
+              children: [
+                Image.asset('assets/images/hector-logo.png'),
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.white.withOpacity(0.9),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.all(12.0),
+                      child: Text(
+                        'Read the story',
+                        style: GoogleFonts.walterTurncoat(
+                          fontSize: SizeConfig.safeBlockHorizontal * 2,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.blueGrey,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
-              ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );

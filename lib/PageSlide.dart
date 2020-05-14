@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'SizeConfig.dart';
+
 class PageSlide extends StatelessWidget {
   final String path;
   final String text;
@@ -12,6 +14,8 @@ class PageSlide extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
+    print(SizeConfig.safeBlockHorizontal * 5);
     return Stack(
       children: <Widget>[
         Container(
@@ -41,7 +45,7 @@ class PageSlide extends StatelessWidget {
                         text,
                         textAlign: TextAlign.center,
                         style: GoogleFonts.walterTurncoat(
-                          fontSize: 16.0,
+                          fontSize: SizeConfig.safeBlockHorizontal * 2,
                           fontWeight: FontWeight.bold,
                           color: Colors.blueGrey, // Color(0xff185122),
                         ),

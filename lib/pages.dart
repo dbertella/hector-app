@@ -16,7 +16,7 @@ Flowers are not so tasty, but what else could he eat?""",
     'assets/images/page3.png',
     """One day, he finds a carrot. Looking around him he wonders:
 “Is there anyone who might steal my food?” Hopefully no one.""",
-    '',
+    'assets/audios/page3.mp3',
   ],
   [
     'assets/images/page4.png',
@@ -29,7 +29,7 @@ Flowers are not so tasty, but what else could he eat?""",
     'assets/images/page5.png',
     """“Hey! You’re eating my carrot!” cries Hector. “Sorry, you’re too slow.
 Didn't you know? Carrots are my favourite food.”""",
-    '',
+    'assets/audios/page5.mp3',
   ],
   [
     'assets/images/page6.png',

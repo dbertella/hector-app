@@ -25,7 +25,6 @@ class _VolumeSelectorWidgetState extends State<VolumeSelector> {
 
   @override
   Widget build(BuildContext context) {
-    print(_isVolumeUp);
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: _isVolumeUp
