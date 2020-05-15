@@ -47,7 +47,6 @@ class _StoryState extends State<Story> {
                 if (audioPath.isNotEmpty) {
                   _assetsAudioPlayer.open(
                     Audio(audioPath),
-                    respectSilentMode: true,
                   );
                   _assetsAudioPlayer.loop = true;
                   _assetsAudioPlayer.play();
