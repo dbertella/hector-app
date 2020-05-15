@@ -15,7 +15,6 @@ class PageSlide extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
-    print(SizeConfig.safeBlockHorizontal * 5);
     return Stack(
       children: <Widget>[
         Container(
@@ -47,7 +46,7 @@ class PageSlide extends StatelessWidget {
                         style: GoogleFonts.gloriaHallelujah(
                           fontSize: SizeConfig.safeBlockHorizontal * 2,
                           fontWeight: FontWeight.bold,
-                          color: Colors.blueGrey, // Color(0xff185122),
+                          color: Color(0xff185122), // Colors.blueGrey
                         ),
                       ),
                     ),
