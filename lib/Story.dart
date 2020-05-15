@@ -48,10 +48,7 @@ class _StoryState extends State<Story> {
                   _assetsAudioPlayer.open(
                     Audio(audioPath),
                   );
-                  _assetsAudioPlayer.loop = true;
                   _assetsAudioPlayer.play();
-                  print('audio');
-                  print(_assetsAudioPlayer.isPlaying);
                 } else {
                   _assetsAudioPlayer.stop();
                 }

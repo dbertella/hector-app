@@ -18,7 +18,12 @@ final routing = [
 final Map<String, WidgetBuilder> routes =
     Map.fromEntries(routing.map((d) => MapEntry(d.route, d.builder)));
 
-void main() => runApp(StoryApp());
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations(
+          [DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight])
+      .then((_) => runApp(new StoryApp()));
+}
 
 class StoryApp extends StatelessWidget {
   StoryApp({Key key}) : super(key: key);
