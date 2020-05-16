@@ -68,7 +68,6 @@ class _StoryState extends State<Story> {
                 initialData: AssetsAudioPlayer.defaultVolume,
                 builder: (context, snapshot) {
                   final double volume = snapshot.data;
-                  print(volume);
                   return VolumeSelector(
                     volume: volume,
                     onChange: (v) {
