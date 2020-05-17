@@ -58,10 +58,6 @@ class HomePage extends StatelessWidget {
                     color: Color(0xfe185122),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(4.0),
-                      // side: BorderSide(
-                      //   color: Colors.white,
-                      //   width: 5,
-                      // ),
                     ),
                     onPressed: () {
                       Navigator.pushNamed(context, '/story');

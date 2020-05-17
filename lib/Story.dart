@@ -18,6 +18,13 @@ class _StoryState extends State<Story> {
 
   final _assetsAudioPlayer = AssetsAudioPlayer();
 
+  _StoryState() {
+    _assetsAudioPlayer.open(
+      Audio('assets/audios/cover.mp3'),
+    );
+    _assetsAudioPlayer.play();
+  }
+
   @override
   void initState() {
     super.initState();
