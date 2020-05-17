@@ -20,6 +20,8 @@ class HomePage extends StatelessWidget {
     if (buttonHeight == null || buttonWidth == null) {
       this._initButtonSize();
     }
+
+    print(SizeConfig.safeBlockHorizontal * 3);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -62,15 +64,17 @@ class HomePage extends StatelessWidget {
                     onPressed: () {
                       Navigator.pushNamed(context, '/story');
                     },
-                    child: Padding(
-                      padding: EdgeInsets.fromLTRB(42, 12, 42, 12),
-                      child: Text(
+                    child: SizedBox(
+                      width: buttonWidth,
+                      height: SizeConfig.safeBlockHorizontal * 5,
+                      child: Center(
+                          child: Text(
                         'Read the story',
                         style: GoogleFonts.gloriaHallelujah(
                           fontSize: SizeConfig.safeBlockHorizontal * 2,
                           color: Colors.white,
                         ),
-                      ),
+                      )),
                     ),
                   ),
                 ),
