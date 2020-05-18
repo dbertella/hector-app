@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina5_5" orientation="landscape" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -16,17 +16,19 @@
                         <viewControllerLayoutGuide type="bottom" id="xbc-2k-c8Z"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" semanticContentAttribute="spatial" misplaced="YES" image="LaunchImage" translatesAutoresizingMaskIntoConstraints="NO" id="YRO-k0-Ey4">
-                                <rect key="frame" x="-1.3611111111110858" y="0.0" width="414" height="896"/>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" semanticContentAttribute="spatial" image="LaunchImage" translatesAutoresizingMaskIntoConstraints="NO" id="YRO-k0-Ey4">
+                                <rect key="frame" x="-1.3333333333333144" y="-44" width="736" height="502"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="YRO-k0-Ey4" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="1a2-6s-vTC"/>
-                            <constraint firstItem="YRO-k0-Ey4" firstAttribute="bottom" secondItem="Ze5-6b-2t3" secondAttribute="bottom" id="4X2-HB-R7a"/>
+                            <constraint firstItem="YRO-k0-Ey4" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="-21.361111111111086" id="9b7-Dy-ZkG"/>
+                            <constraint firstItem="YRO-k0-Ey4" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="topMargin" constant="-44" id="Pxx-h1-cPG"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="YRO-k0-Ey4" secondAttribute="trailing" constant="-18.638888888888914" id="fEc-SV-Est"/>
+                            <constraint firstItem="YRO-k0-Ey4" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="k5V-3G-UHg"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -36,6 +38,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="LaunchImage" width="512" height="512"/>
+        <image name="LaunchImage" width="700" height="700"/>
     </resources>
 </document>

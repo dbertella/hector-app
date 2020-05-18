@@ -1,5 +1,9 @@
 List<List<String>> pages = [
-  ['assets/images/Cover.png', 'Hector the little dinosaur', 'assets/audios/cover.mp3',],
+  [
+    'assets/images/Cover.png',
+    'Hector the little dinosaur',
+    'assets/audios/cover.mp3',
+  ],
   [
     'assets/images/page1.png',
     """Hector is a little dinosaur who lives in the forest.
@@ -47,7 +51,7 @@ Can you see anyone who might steal his food?""",
     'assets/images/page8.png',
     """“Hi Bear. How are you?” asks Hector. “I’m hungry”, says Bear.
 “Me too!” replies Hector. “Let’s see who can get this apple first then”, says Bear.""",
-    '',
+    'assets/audios/page8.mp3',
   ],
   [
     'assets/images/page9.png',
@@ -59,7 +63,7 @@ But Bear is already eating the apple. Hector has been too slow again.""",
     'assets/images/page10.png',
     """He walks some more and... oh look, a salad! That must be good.
 Hopefully no one will steal his food. Who else might want this salad?""",
-    '',
+    'assets/audios/page10-partial.mp3',
   ],
   [
     'assets/images/page11.png',

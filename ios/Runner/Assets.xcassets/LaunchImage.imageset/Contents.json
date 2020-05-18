@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "hector-logo.png",
+      "filename" : "HectorIcon@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "HectorIcon@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "HectorIcon@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
