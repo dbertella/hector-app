@@ -69,7 +69,7 @@ Hopefully no one will steal his food. Who else might want this salad?""",
     'assets/images/page11.png',
     """“Oh, hi Snail. How are you?” “I’m very hungry”, says Snail slowly.
 “I see”, replies Hector, “shall we share then?” “Sure, but you better hurry!”""",
-    '',
+    'assets/audios/page11.mp3',
   ],
   [
     'assets/images/page12.png',
@@ -81,54 +81,54 @@ Just a few more steps. But the snail is getting closer.""",
     'assets/images/page13.png',
     """Hector moves another foot.
 But the snail is much faster.""",
-    '',
+    'assets/audios/page13.mp3',
   ],
   [
     'assets/images/page14.png',
     """“Don’t finish it: we can still be friends!”
 tries Hector one more time, desperately...""",
-    '',
+    'assets/audios/page14.mp3',
   ],
   [
     'assets/images/page15.png',
     """Once again, Hector was too slow. There’s nothing left,
 the salad is gone, and there’s no more food around.""",
-    '',
+    'assets/audios/page15.mp3',
   ],
   [
     'assets/images/page16.png',
     """When a little mouse comes to offer him a nut.
 “I’m small and fast, I can give you this and more.
 You’re big and strong, you can be my protector.”""",
-    '',
+    'assets/audios/page16.mp3',
   ],
   [
     'assets/images/page17.png',
     """Hector is not alone anymore, he is so happy!
 Hopefully no one will steal his new friend. Can you see anybody?""",
-    '',
+    'assets/audios/page17.mp3',
   ],
   [
     'assets/images/page18.png',
     """Oh no, a fox! “This mouse looks yummy. Do you mind if we share it?” asks Fox.
 “Well”, answers Hector, “if you want it You’ll have to do something for me.""",
-    '',
+    'assets/audios/page18.mp3',
   ],
   [
     'assets/images/page19.png',
     """Mice are my favourite food, but I think those nuts taste much better.
 Go! I hold the mouse, you try the nut. Right behind you, tell me, is it tasty?”""",
-    '',
+    'assets/audios/page19.mp3',
   ],
   [
     'assets/images/page20.png',
     """“Did you just play a trick on me?” grumbles Fox. “Where is the mouse, I want to know!”
 “I’m sorry”, Hector answers the Fox, “I ate it all, you’re far too slow!”""",
-    '',
+    'assets/audios/page20.mp3',
   ],
   [
     'assets/images/End.png',
     """That was the beginning of a beautiful friendship.""",
-    '',
+    'assets/audios/end.mp3',
   ],
 ];

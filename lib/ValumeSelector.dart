@@ -39,7 +39,7 @@ class _VolumeSelectorWidgetState extends State<VolumeSelector> {
               child: Icon(
                 Icons.volume_up,
                 size: 32,
-                color: Colors.grey[800],
+                color: Colors.black,
               ),
             )
           : FlatButton(
@@ -53,7 +53,7 @@ class _VolumeSelectorWidgetState extends State<VolumeSelector> {
               child: Icon(
                 Icons.volume_mute,
                 size: 32,
-                color: Colors.grey[800],
+                color: Colors.black,
               ),
             ),
     );

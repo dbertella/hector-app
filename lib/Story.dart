@@ -96,7 +96,7 @@ class _StoryState extends State<Story> {
                   child: Icon(
                     Icons.home,
                     size: 32,
-                    color: Colors.grey[800],
+                    color: Colors.black,
                   ),
                 ),
               ),

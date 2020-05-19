@@ -30,8 +30,7 @@ class HomePage extends StatelessWidget {
           'Hector the little dinosaur',
           style: GoogleFonts.gloriaHallelujah(
             fontSize: SizeConfig.safeBlockHorizontal * 2.2,
-            fontWeight: FontWeight.bold,
-            color: Color(0xff185122),
+            color: Colors.black,
           ),
         ),
       ),
@@ -47,19 +46,19 @@ class HomePage extends StatelessWidget {
               children: [
                 ClipOval(
                   child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(280.0),
-                      border: Border.all(color: Color(0xff185122), width: 5.0),
-                    ),
-                    child: Image.asset('assets/images/hector-logo.png'),
+                    child: Image.asset('assets/images/HectorLauncherIcon.png'),
                   ),
                 ),
                 Align(
                   alignment: Alignment.bottomCenter,
                   child: RaisedButton(
-                    color: Color(0xfe185122),
+                    color: Colors.white,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(4.0),
+                      side: BorderSide(
+                        color: Colors.black,
+                        width: 5.0,
+                      )
                     ),
                     onPressed: () {
                       Navigator.pushNamed(context, '/story');
@@ -72,7 +71,7 @@ class HomePage extends StatelessWidget {
                         'Read the story',
                         style: GoogleFonts.gloriaHallelujah(
                           fontSize: SizeConfig.safeBlockHorizontal * 2,
-                          color: Colors.white,
+                          color: Colors.black,
                         ),
                       )),
                     ),
