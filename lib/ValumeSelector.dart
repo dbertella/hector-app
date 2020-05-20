@@ -26,35 +26,27 @@ class _VolumeSelectorWidgetState extends State<VolumeSelector> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(12.0),
       child: _isVolumeUp
-          ? FlatButton(
-              padding: EdgeInsets.all(16),
+          ? IconButton(
               onPressed: () {
                 setState(() {
                   _isVolumeUp = false;
                 });
                 widget.onChange(AssetsAudioPlayer.minVolume);
               },
-              child: Icon(
-                Icons.volume_up,
-                size: 32,
-                color: Colors.black,
-              ),
+              icon: Image.asset('assets/images/icons/volumeOn.png'),
+              tooltip: 'Volume Mute',
             )
-          : FlatButton(
-              padding: EdgeInsets.all(16),
+          : IconButton(
               onPressed: () {
                 setState(() {
                   _isVolumeUp = true;
                 });
                 widget.onChange(AssetsAudioPlayer.maxVolume);
               },
-              child: Icon(
-                Icons.volume_mute,
-                size: 32,
-                color: Colors.black,
-              ),
+              icon: Image.asset('assets/images/icons/volumeOff.png'),
+              tooltip: 'Volume Up',
             ),
     );
   }

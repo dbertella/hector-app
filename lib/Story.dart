@@ -86,18 +86,15 @@ class _StoryState extends State<Story> {
             ),
             Align(
               alignment: Alignment.topLeft,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: FlatButton(
-                  padding: EdgeInsets.all(16),
+              child: 
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: IconButton(
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  child: Icon(
-                    Icons.home,
-                    size: 32,
-                    color: Colors.black,
-                  ),
+                  icon: new Image.asset('assets/images/icons/home.png'),
+                  tooltip: 'Back to home',
                 ),
               ),
             ),

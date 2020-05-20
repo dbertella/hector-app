@@ -1,4 +1,4 @@
-package com.example.hector_app
+package hector.the.little.dinosaur
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity
