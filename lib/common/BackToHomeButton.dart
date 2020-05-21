@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:hector_app/common/AnimatedButton.dart';
 import 'package:hector_app/common/SoundMixin.dart';
 
@@ -33,7 +34,10 @@ class _BackToHomeButtonWidgetState extends State<BackToHomeButton> with Sound {
             playButtonSound();
             widget.onPressed();
           },
-          icon: new Image.asset('assets/images/icons/home.png'),
+          icon: SvgPicture.asset(
+            'assets/images/icons/home.svg',
+            semanticsLabel: 'Back to home',
+          ),
           tooltip: 'Back to home',
         ),
       ),

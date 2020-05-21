@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:assets_audio_player/assets_audio_player.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:hector_app/common/AnimatedButton.dart';
 import 'package:hector_app/common/SoundMixin.dart';
 
@@ -20,19 +21,11 @@ class VolumeSelector extends StatefulWidget {
 
 class _VolumeSelectorWidgetState extends State<VolumeSelector> with Sound {
   bool _isVolumeUp;
-  Image _volumeDownImage;
 
   @override
   void initState() {
     super.initState();
     _isVolumeUp = widget.volume != AssetsAudioPlayer.minVolume;
-    _volumeDownImage = Image.asset('assets/images/icons/volumeOff.png');
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    precacheImage(_volumeDownImage.image, context);
   }
 
   @override
@@ -56,7 +49,10 @@ class _VolumeSelectorWidgetState extends State<VolumeSelector> with Sound {
                   playButtonSound();
                   widget.onChange(AssetsAudioPlayer.minVolume);
                 },
-                icon: Image.asset('assets/images/icons/volumeOn.png'),
+                icon: SvgPicture.asset(
+                  'assets/images/icons/volumeOn.svg',
+                  semanticsLabel: 'Volume Mute',
+                ),
                 tooltip: 'Volume Mute',
               )
             : IconButton(
@@ -68,7 +64,11 @@ class _VolumeSelectorWidgetState extends State<VolumeSelector> with Sound {
                   playButtonSound();
                   widget.onChange(AssetsAudioPlayer.maxVolume);
                 },
-                icon: _volumeDownImage,
+                // icon: _volumeDownImage,
+                icon: SvgPicture.asset(
+                  'assets/images/icons/volumeOff.svg',
+                  semanticsLabel: 'Volume Up',
+                ),
                 tooltip: 'Volume Up',
               ),
       ),
