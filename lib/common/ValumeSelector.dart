@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:assets_audio_player/assets_audio_player.dart';
+import 'package:hector_app/common/SoundMixin.dart';
 
 class VolumeSelector extends StatefulWidget {
   final double volume;
@@ -16,28 +17,27 @@ class VolumeSelector extends StatefulWidget {
   _VolumeSelectorWidgetState createState() => _VolumeSelectorWidgetState();
 }
 
-class _VolumeSelectorWidgetState extends State<VolumeSelector> {
+class _VolumeSelectorWidgetState extends State<VolumeSelector> with Sound {
   bool _isVolumeUp;
-
-  final _assetsAudioPlayer = AssetsAudioPlayer();
+  Image _volumeDownImage;
 
   @override
   void initState() {
     super.initState();
     _isVolumeUp = widget.volume != AssetsAudioPlayer.minVolume;
+    _volumeDownImage = Image.asset('assets/images/icons/volumeOff.png');
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    precacheImage(_volumeDownImage.image, context);
   }
 
   @override
   void dispose() {
-    _assetsAudioPlayer.dispose();
     super.dispose();
-  }
-
-  void _playButtonSound() {
-    _assetsAudioPlayer.open(
-      Audio('assets/audios/button-press.mp3'),
-    );
-    _assetsAudioPlayer.play();
+    disposeAudio();
   }
 
   @override
@@ -51,7 +51,7 @@ class _VolumeSelectorWidgetState extends State<VolumeSelector> {
                 setState(() {
                   _isVolumeUp = false;
                 });
-                _playButtonSound();
+                playButtonSound();
                 widget.onChange(AssetsAudioPlayer.minVolume);
               },
               icon: Image.asset('assets/images/icons/volumeOn.png'),
@@ -63,10 +63,10 @@ class _VolumeSelectorWidgetState extends State<VolumeSelector> {
                 setState(() {
                   _isVolumeUp = true;
                 });
-                _playButtonSound();
+                playButtonSound();
                 widget.onChange(AssetsAudioPlayer.maxVolume);
               },
-              icon: Image.asset('assets/images/icons/volumeOff.png'),
+              icon: _volumeDownImage,
               tooltip: 'Volume Up',
             ),
     );

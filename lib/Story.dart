@@ -1,9 +1,10 @@
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:hector_app/PageSlide.dart';
-import 'package:hector_app/SizeConfig.dart';
-import 'package:hector_app/ValumeSelector.dart';
+import 'package:hector_app/common/BackToHomeButton.dart';
+import 'package:hector_app/common/PageSlide.dart';
+import 'package:hector_app/common/SizeConfig.dart';
+import 'package:hector_app/common/ValumeSelector.dart';
 import 'package:hector_app/pages.dart';
 
 class Story extends StatefulWidget {
@@ -16,7 +17,6 @@ class Story extends StatefulWidget {
 
 class _StoryState extends State<Story> {
   PageController _pageController;
-  Image _prefetchImage;
   final _assetsAudioPlayer = AssetsAudioPlayer();
 
   _StoryState() {
@@ -28,15 +28,8 @@ class _StoryState extends State<Story> {
 
   @override
   void initState() {
-    _prefetchImage = Image.asset('assets/images/icons/volumeOff.png');
     _pageController = PageController();
     super.initState();
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    precacheImage(_prefetchImage.image, context);
   }
 
   @override
@@ -98,16 +91,11 @@ class _StoryState extends State<Story> {
             ),
             Align(
               alignment: Alignment.topLeft,
-              child: Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: IconButton(
-                  iconSize: SizeConfig.safeBlockHorizontal * 5,
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: new Image.asset('assets/images/icons/home.png'),
-                  tooltip: 'Back to home',
-                ),
+              child: BackToHomeButton(
+                iconSize: SizeConfig.safeBlockHorizontal * 5,
+                onPressed: () {
+                  Navigator.pop(context);
+                },
               ),
             ),
           ],

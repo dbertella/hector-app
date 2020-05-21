@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hector_app/SizeConfig.dart';
+import 'package:hector_app/common/SizeConfig.dart';
 
 class HomePage extends StatelessWidget {
   static double buttonWidth;
@@ -54,12 +54,11 @@ class HomePage extends StatelessWidget {
                   child: RaisedButton(
                     color: Colors.white,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(4.0),
-                      side: BorderSide(
-                        color: Colors.black,
-                        width: 5.0,
-                      )
-                    ),
+                        borderRadius: BorderRadius.circular(4.0),
+                        side: BorderSide(
+                          color: Colors.black,
+                          width: 5.0,
+                        )),
                     onPressed: () {
                       Navigator.pushNamed(context, '/story');
                     },
