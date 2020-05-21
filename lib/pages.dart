@@ -63,7 +63,7 @@ But Bear is already eating the apple. Hector has been too slow again.""",
     'assets/images/page10.png',
     """He walks some more and... oh look, a salad! That must be good.
 Hopefully no one will steal his food. Who else might want this salad?""",
-    'assets/audios/page10-partial.mp3',
+    'assets/audios/page10.mp3',
   ],
   [
     'assets/images/page11.png',
