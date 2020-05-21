@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hector_app/common/AnimatedButton.dart';
 import 'package:hector_app/common/SizeConfig.dart';
 
 class HomePage extends StatelessWidget {
@@ -21,7 +22,6 @@ class HomePage extends StatelessWidget {
       this._initButtonSize();
     }
 
-    print(SizeConfig.safeBlockHorizontal * 3);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -51,28 +51,31 @@ class HomePage extends StatelessWidget {
                 ),
                 Align(
                   alignment: Alignment.bottomCenter,
-                  child: RaisedButton(
-                    color: Colors.white,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(4.0),
-                        side: BorderSide(
-                          color: Colors.black,
-                          width: 5.0,
-                        )),
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/story');
-                    },
-                    child: SizedBox(
-                      width: buttonWidth,
-                      height: SizeConfig.safeBlockHorizontal * 5,
-                      child: Center(
+                  child: AnimatedButton(
+                    child: RaisedButton(
+                      color: Colors.white,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(4.0),
+                          side: BorderSide(
+                            color: Colors.black,
+                            width: 5.0,
+                          )),
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/story');
+                      },
+                      child: SizedBox(
+                        width: buttonWidth,
+                        height: SizeConfig.safeBlockHorizontal * 5,
+                        child: Center(
                           child: Text(
-                        'Read the story',
-                        style: GoogleFonts.gloriaHallelujah(
-                          fontSize: SizeConfig.safeBlockHorizontal * 2,
-                          color: Colors.black,
+                            'Read the story',
+                            style: GoogleFonts.gloriaHallelujah(
+                              fontSize: SizeConfig.safeBlockHorizontal * 2,
+                              color: Colors.black,
+                            ),
+                          ),
                         ),
-                      )),
+                      ),
                     ),
                   ),
                 ),

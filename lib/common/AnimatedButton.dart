@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hector_app/common/SoundMixin.dart';
 
 class AnimatedButton extends StatefulWidget {
   final Widget child;
@@ -10,7 +11,7 @@ class AnimatedButton extends StatefulWidget {
 }
 
 class _AnimatedButtonState extends State<AnimatedButton>
-    with SingleTickerProviderStateMixin {
+    with SingleTickerProviderStateMixin, Sound {
   double _scale;
   AnimationController _controller;
 
@@ -30,11 +31,13 @@ class _AnimatedButtonState extends State<AnimatedButton>
   @override
   void dispose() {
     _controller.dispose();
+    disposeAudio();
     super.dispose();
   }
 
   void _onTapDown(TapDownDetails details) {
     _controller.forward();
+    playButtonSound();
   }
 
   void _onTapUp(TapUpDetails details) {
@@ -44,13 +47,13 @@ class _AnimatedButtonState extends State<AnimatedButton>
   @override
   Widget build(BuildContext context) {
     _scale = 1 - _controller.value;
-    print("scale: ${_controller.value}");
     return GestureDetector(
       onTapDown: _onTapDown,
       onTapUp: _onTapUp,
+      behavior: HitTestBehavior.translucent,
       child: Transform.scale(
         scale: _scale,
-        child: widget.child,
+        child: Container(child: widget.child),
       ),
     );
   }

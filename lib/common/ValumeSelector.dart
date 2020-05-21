@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hector_app/common/AnimatedButton.dart';
-import 'package:hector_app/common/SoundMixin.dart';
 
 class VolumeSelector extends StatefulWidget {
   final double volume;
@@ -19,19 +18,13 @@ class VolumeSelector extends StatefulWidget {
   _VolumeSelectorWidgetState createState() => _VolumeSelectorWidgetState();
 }
 
-class _VolumeSelectorWidgetState extends State<VolumeSelector> with Sound {
+class _VolumeSelectorWidgetState extends State<VolumeSelector> {
   bool _isVolumeUp;
 
   @override
   void initState() {
     super.initState();
     _isVolumeUp = widget.volume != AssetsAudioPlayer.minVolume;
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    disposeAudio();
   }
 
   @override
@@ -46,14 +39,13 @@ class _VolumeSelectorWidgetState extends State<VolumeSelector> with Sound {
                   setState(() {
                     _isVolumeUp = false;
                   });
-                  playButtonSound();
                   widget.onChange(AssetsAudioPlayer.minVolume);
                 },
                 icon: SvgPicture.asset(
                   'assets/images/icons/volumeOn.svg',
-                  semanticsLabel: 'Volume Mute',
+                  semanticsLabel: 'Volume On',
                 ),
-                tooltip: 'Volume Mute',
+                tooltip: 'Volume On',
               )
             : IconButton(
                 iconSize: widget.iconSize,
@@ -61,15 +53,13 @@ class _VolumeSelectorWidgetState extends State<VolumeSelector> with Sound {
                   setState(() {
                     _isVolumeUp = true;
                   });
-                  playButtonSound();
                   widget.onChange(AssetsAudioPlayer.maxVolume);
                 },
-                // icon: _volumeDownImage,
                 icon: SvgPicture.asset(
-                  'assets/images/icons/volumeOff.svg',
-                  semanticsLabel: 'Volume Up',
+                  'assets/images/icons/volumeMute.svg',
+                  semanticsLabel: 'Volume Mute',
                 ),
-                tooltip: 'Volume Up',
+                tooltip: 'Volume Mute',
               ),
       ),
     );
