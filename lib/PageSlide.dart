@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'SizeConfig.dart';
-
 class PageSlide extends StatelessWidget {
   final String path;
   final String text;
+  final double fontSize;
 
   PageSlide({
     @required this.path,
     @required this.text,
+    @required this.fontSize,
   });
 
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     return Stack(
       children: <Widget>[
         Container(
@@ -44,7 +43,7 @@ class PageSlide extends StatelessWidget {
                         text,
                         textAlign: TextAlign.center,
                         style: GoogleFonts.gloriaHallelujah(
-                          fontSize: SizeConfig.safeBlockHorizontal * 2,
+                          fontSize: fontSize,
                           color: Colors.black, // Colors.blueGrey
                         ),
                       ),

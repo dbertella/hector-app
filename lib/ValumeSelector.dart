@@ -3,10 +3,12 @@ import 'package:assets_audio_player/assets_audio_player.dart';
 
 class VolumeSelector extends StatefulWidget {
   final double volume;
+  final double iconSize;
   final Function(double) onChange;
 
   const VolumeSelector({
     @required this.volume,
+    @required this.iconSize,
     @required this.onChange,
   });
 
@@ -44,7 +46,7 @@ class _VolumeSelectorWidgetState extends State<VolumeSelector> {
       padding: const EdgeInsets.all(12.0),
       child: _isVolumeUp
           ? IconButton(
-              iconSize: 55,
+              iconSize: widget.iconSize,
               onPressed: () {
                 setState(() {
                   _isVolumeUp = false;
@@ -56,7 +58,7 @@ class _VolumeSelectorWidgetState extends State<VolumeSelector> {
               tooltip: 'Volume Mute',
             )
           : IconButton(
-              iconSize: 55,
+              iconSize: widget.iconSize,
               onPressed: () {
                 setState(() {
                   _isVolumeUp = true;

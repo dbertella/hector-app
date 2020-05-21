@@ -2,6 +2,7 @@ import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hector_app/PageSlide.dart';
+import 'package:hector_app/SizeConfig.dart';
 import 'package:hector_app/ValumeSelector.dart';
 import 'package:hector_app/pages.dart';
 
@@ -15,7 +16,7 @@ class Story extends StatefulWidget {
 
 class _StoryState extends State<Story> {
   PageController _pageController;
-
+  Image _prefetchImage;
   final _assetsAudioPlayer = AssetsAudioPlayer();
 
   _StoryState() {
@@ -27,8 +28,15 @@ class _StoryState extends State<Story> {
 
   @override
   void initState() {
-    super.initState();
+    _prefetchImage = Image.asset('assets/images/icons/volumeOff.png');
     _pageController = PageController();
+    super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    precacheImage(_prefetchImage.image, context);
   }
 
   @override
@@ -40,6 +48,7 @@ class _StoryState extends State<Story> {
 
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return Scaffold(
       body: GestureDetector(
         onTap: () {
@@ -63,8 +72,10 @@ class _StoryState extends State<Story> {
               children: pages.map(
                 (content) {
                   return PageSlide(
-                      path: content.take(1).first,
-                      text: content.skip(1).take(1).first);
+                    path: content.take(1).first,
+                    text: content.skip(1).take(1).first,
+                    fontSize: SizeConfig.safeBlockHorizontal * 2,
+                  );
                 },
               ).toList(),
             ),
@@ -76,6 +87,7 @@ class _StoryState extends State<Story> {
                 builder: (context, snapshot) {
                   final double volume = snapshot.data;
                   return VolumeSelector(
+                    iconSize: SizeConfig.safeBlockHorizontal * 5,
                     volume: volume,
                     onChange: (v) {
                       _assetsAudioPlayer.setVolume(v);
@@ -86,10 +98,10 @@ class _StoryState extends State<Story> {
             ),
             Align(
               alignment: Alignment.topLeft,
-              child: 
-              Padding(
+              child: Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: IconButton(
+                  iconSize: SizeConfig.safeBlockHorizontal * 5,
                   onPressed: () {
                     Navigator.pop(context);
                   },
