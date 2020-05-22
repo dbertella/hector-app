@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:hector_app/common/SoundButton.dart';
 
@@ -14,6 +16,7 @@ class _AnimatedButtonState extends State<AnimatedButton>
     with SingleTickerProviderStateMixin {
   double _scale;
   AnimationController _controller;
+  Timer _timer;
 
   @override
   void initState() {
@@ -31,15 +34,15 @@ class _AnimatedButtonState extends State<AnimatedButton>
   @override
   void dispose() {
     _controller.dispose();
+    _timer.cancel();
     super.dispose();
   }
 
   void _onTapDown(TapDownDetails details) {
     _controller.forward();
-  }
-
-  void _onTapUp(TapUpDetails details) {
-    _controller.reverse();
+    _timer = new Timer(const Duration(milliseconds: 100), () {
+      _controller.reverse();
+    });
   }
 
   @override
@@ -47,13 +50,10 @@ class _AnimatedButtonState extends State<AnimatedButton>
     _scale = 1 - _controller.value;
     return GestureDetector(
       onTapDown: _onTapDown,
-      onTapUp: _onTapUp,
       behavior: HitTestBehavior.translucent,
       child: Transform.scale(
         scale: _scale,
-        child: SoundButton(
-          child: widget.child,
-        ),
+        child: widget.child,
       ),
     );
   }

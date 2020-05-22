@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hector_app/common/AnimatedButton.dart';
 import 'package:hector_app/common/SizeConfig.dart';
+import 'package:hector_app/common/SoundButton.dart';
 
 class HomePage extends StatelessWidget {
   static double buttonWidth;
@@ -23,21 +22,26 @@ class HomePage extends StatelessWidget {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0.0,
-        title: Text(
-          'Hector the little dinosaur',
-          style: GoogleFonts.gloriaHallelujah(
-            fontSize: SizeConfig.safeBlockHorizontal * 2.2,
-            color: Colors.black,
+      // appBar: AppBar(
+      //   backgroundColor: Colors.white,
+      //   elevation: 0.0,
+      //   title: Text(
+      //     'Hector the little dinosaur',
+      //     style: GoogleFonts.gloriaHallelujah(
+      //       fontSize: SizeConfig.safeBlockHorizontal * 2.2,
+      //       color: Colors.black,
+      //     ),
+      //   ),
+      // ),
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/homeBg.png'),
+            fit: BoxFit.cover,
           ),
         ),
-      ),
-      body: GestureDetector(
-        onTap: () {
-          SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
-        },
         child: Center(
           child: SizedBox(
             width: buttonWidth,
@@ -51,7 +55,7 @@ class HomePage extends StatelessWidget {
                 ),
                 Align(
                   alignment: Alignment.bottomCenter,
-                  child: AnimatedButton(
+                  child: SoundButton(
                     child: RaisedButton(
                       color: Colors.white,
                       shape: RoundedRectangleBorder(

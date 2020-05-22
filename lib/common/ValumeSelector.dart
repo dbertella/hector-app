@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:hector_app/common/AnimatedButton.dart';
+import 'package:hector_app/common/SoundButton.dart';
 
 class VolumeSelector extends StatefulWidget {
   final double volume;
@@ -31,7 +31,7 @@ class _VolumeSelectorWidgetState extends State<VolumeSelector> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(12.0),
-      child: AnimatedButton(
+      child: SoundButton(
         child: _isVolumeUp
             ? IconButton(
                 iconSize: widget.iconSize,
