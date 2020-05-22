@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:hector_app/common/HectorStoryButton.dart';
 import 'package:hector_app/common/SizeConfig.dart';
-import 'package:hector_app/common/SoundButton.dart';
 
 class HomePage extends StatelessWidget {
   static double buttonWidth;
@@ -22,17 +21,6 @@ class HomePage extends StatelessWidget {
     }
 
     return Scaffold(
-      // appBar: AppBar(
-      //   backgroundColor: Colors.white,
-      //   elevation: 0.0,
-      //   title: Text(
-      //     'Hector the little dinosaur',
-      //     style: GoogleFonts.gloriaHallelujah(
-      //       fontSize: SizeConfig.safeBlockHorizontal * 2.2,
-      //       color: Colors.black,
-      //     ),
-      //   ),
-      // ),
       body: Container(
         width: double.infinity,
         height: double.infinity,
@@ -55,32 +43,13 @@ class HomePage extends StatelessWidget {
                 ),
                 Align(
                   alignment: Alignment.bottomCenter,
-                  child: SoundButton(
-                    child: RaisedButton(
-                      color: Colors.white,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(4.0),
-                          side: BorderSide(
-                            color: Colors.black,
-                            width: 5.0,
-                          )),
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/story');
-                      },
-                      child: SizedBox(
-                        width: buttonWidth,
-                        height: SizeConfig.safeBlockHorizontal * 5,
-                        child: Center(
-                          child: Text(
-                            'Read the story',
-                            style: GoogleFonts.gloriaHallelujah(
-                              fontSize: SizeConfig.safeBlockHorizontal * 2,
-                              color: Colors.black,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
+                  child: HectorStoryButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/story');
+                    },
+                    buttonWidth: buttonWidth,
+                    buttonHeight: SizeConfig.safeBlockHorizontal * 5,
+                    fontSize: SizeConfig.safeBlockHorizontal * 2,
                   ),
                 ),
               ],

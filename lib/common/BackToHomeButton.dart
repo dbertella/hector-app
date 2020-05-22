@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:hector_app/common/SoundButton.dart';
+import 'package:hector_app/common/SoundMixin.dart';
 
-class BackToHomeButton extends StatelessWidget {
+class BackToHomeButton extends StatelessWidget with Sound {
   final double iconSize;
   final VoidCallback onPressed;
 
@@ -15,16 +15,17 @@ class BackToHomeButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(12.0),
-      child: SoundButton(
-        child: IconButton(
-          iconSize: iconSize,
-          onPressed: onPressed,
-          icon: SvgPicture.asset(
-            'assets/images/icons/home.svg',
-            semanticsLabel: 'Back to home',
-          ),
-          tooltip: 'Back to home',
+      child: IconButton(
+        iconSize: iconSize,
+        onPressed: () {
+          onPressed();
+          playButtonSound();
+        },
+        icon: SvgPicture.asset(
+          'assets/images/icons/home.svg',
+          semanticsLabel: 'Back to home',
         ),
+        tooltip: 'Back to home',
       ),
     );
   }

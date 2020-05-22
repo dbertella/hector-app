@@ -5,16 +5,9 @@ abstract class Sound {
   // extended directly.
   factory Sound._() => null;
 
-  final _assetsAudioPlayer = AssetsAudioPlayer();
-
-  void disposeAudio() {
-    _assetsAudioPlayer.dispose();
-  }
-
   void playButtonSound() {
-    _assetsAudioPlayer.open(
+    AssetsAudioPlayer.playAndForget(
       Audio('assets/audios/button-press.mp3'),
     );
-    _assetsAudioPlayer.play();
   }
 }
