@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hector_app/ButterflyAnimation.dart';
 import 'package:hector_app/common/HectorStoryButton.dart';
 import 'package:hector_app/common/SizeConfig.dart';
+import 'package:lottie/lottie.dart';
 
 class HomePage extends StatelessWidget {
   static double buttonWidth;
@@ -21,42 +23,46 @@ class HomePage extends StatelessWidget {
     }
 
     return Scaffold(
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/images/homeBg.png'),
-            fit: BoxFit.cover,
+      body: Stack(children: [
+        ButterflyAnimation(),
+        Container(
+          width: double.infinity,
+          height: double.infinity,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/images/homeBg.png'),
+              fit: BoxFit.cover,
+            ),
           ),
-        ),
-        child: Center(
-          child: SizedBox(
-            width: buttonWidth,
-            height: buttonHeight,
-            child: Stack(
-              children: [
-                ClipOval(
-                  child: Container(
-                    child: Image.asset('assets/images/HectorLauncherIcon.png'),
+          child: Center(
+            child: SizedBox(
+              width: buttonWidth,
+              height: buttonHeight,
+              child: Stack(
+                children: [
+                  ClipOval(
+                    child: Container(
+                      child:
+                          Image.asset('assets/images/HectorLauncherIcon.png'),
+                    ),
                   ),
-                ),
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: HectorStoryButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/story');
-                    },
-                    buttonWidth: buttonWidth,
-                    buttonHeight: SizeConfig.safeBlockHorizontal * 5,
-                    fontSize: SizeConfig.safeBlockHorizontal * 2,
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: HectorStoryButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/story');
+                      },
+                      buttonWidth: buttonWidth,
+                      buttonHeight: SizeConfig.safeBlockHorizontal * 5,
+                      fontSize: SizeConfig.safeBlockHorizontal * 2,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
-      ),
+      ]),
     );
   }
 }
