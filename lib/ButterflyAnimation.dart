@@ -12,6 +12,7 @@ class _ButterflyAnimationState extends State<ButterflyAnimation>
     with TickerProviderStateMixin {
   AnimationController _controller;
   Timer _timer;
+  bool _visible;
 
   @override
   void initState() {
@@ -19,14 +20,22 @@ class _ButterflyAnimationState extends State<ButterflyAnimation>
     _controller = AnimationController(vsync: this)
       ..addStatusListener((AnimationStatus status) {
         if (status == AnimationStatus.completed) {
-          print('completed');
           _runAnimation();
         }
       });
+    _visible = true;
   }
 
   void _runAnimation() {
-    _timer = new Timer(const Duration(seconds: 10), () {
+    setState(() {
+      _visible = false;
+    });
+
+    _timer = Timer(const Duration(seconds: 5), () {
+      setState(() {
+        _visible = true;
+      });
+
       _controller.reset();
       _controller.forward();
     });
@@ -41,18 +50,21 @@ class _ButterflyAnimationState extends State<ButterflyAnimation>
 
   @override
   Widget build(BuildContext context) {
-    _controller.stop();
-    return Lottie.asset(
-      'assets/animations/butterfly.json',
-      width: double.infinity,
-      height: double.infinity,
-      fit: BoxFit.cover,
-      controller: _controller,
-      onLoaded: (composition) {
-        _controller
-          ..duration = composition.duration * 0.5
-          ..forward();
-      },
+    return AnimatedOpacity(
+      opacity: _visible ? 1 : 0,
+      duration: const Duration(milliseconds: 300),
+      child: Lottie.asset(
+        'assets/animations/butterfly.json',
+        width: double.infinity,
+        height: double.infinity,
+        fit: BoxFit.cover,
+        controller: _controller,
+        onLoaded: (composition) {
+          _controller
+            ..duration = composition.duration * 0.5
+            ..forward();
+        },
+      ),
     );
   }
 }

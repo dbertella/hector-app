@@ -4,7 +4,7 @@ import 'package:hector_app/common/BackToHomeButton.dart';
 import 'package:hector_app/common/PageSlide.dart';
 import 'package:hector_app/common/SizeConfig.dart';
 import 'package:hector_app/common/ValumeSelector.dart';
-import 'package:hector_app/pages.dart';
+import 'package:hector_app/common/pages.dart';
 
 class Story extends StatefulWidget {
   static String routeName = '/story';
@@ -16,13 +16,21 @@ class Story extends StatefulWidget {
 
 class _StoryState extends State<Story> {
   PageController _pageController;
-  final _assetsAudioPlayer = AssetsAudioPlayer();
+  final _assetsAudioPlayer = AssetsAudioPlayer.newPlayer();
+  final _assetsAudioPlayerBg = AssetsAudioPlayer.newPlayer();
 
   _StoryState() {
     _assetsAudioPlayer.open(
       Audio('assets/audios/cover.mp3'),
+      autoStart: true,
     );
-    _assetsAudioPlayer.play();
+
+    _assetsAudioPlayerBg.open(
+      Audio('assets/audios/bgMusic.mp3'),
+      volume: 0.05,
+      autoStart: true,
+    );
+    _assetsAudioPlayerBg.loop = true;
   }
 
   @override
@@ -35,6 +43,7 @@ class _StoryState extends State<Story> {
   void dispose() {
     _pageController.dispose();
     _assetsAudioPlayer.dispose();
+    _assetsAudioPlayerBg.dispose();
     super.dispose();
   }
 
@@ -49,10 +58,7 @@ class _StoryState extends State<Story> {
             onPageChanged: (int page) {
               String audioPath = pages[page].skip(2).take(1).first;
               if (audioPath.isNotEmpty) {
-                _assetsAudioPlayer.open(
-                  Audio(audioPath),
-                );
-                _assetsAudioPlayer.play();
+                _assetsAudioPlayer.open(Audio(audioPath), autoStart: true);
               } else {
                 _assetsAudioPlayer.stop();
               }
