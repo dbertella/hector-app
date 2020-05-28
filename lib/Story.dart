@@ -23,12 +23,14 @@ class _StoryState extends State<Story> {
     _assetsAudioPlayer.open(
       Audio('assets/audios/cover.mp3'),
       autoStart: true,
+      playInBackground: PlayInBackground.disabledRestoreOnForeground,
     );
 
     _assetsAudioPlayerBg.open(
       Audio('assets/audios/bgMusic.mp3'),
       volume: 0.05,
       autoStart: true,
+      playInBackground: PlayInBackground.disabledRestoreOnForeground,
     );
     _assetsAudioPlayerBg.loop = true;
   }

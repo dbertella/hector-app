@@ -21,7 +21,7 @@ packages:
       name: assets_audio_player
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.4.6"
+    version: "1.6.3"
   async:
     dependency: transitive
     description:
