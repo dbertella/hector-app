@@ -59,11 +59,11 @@ class _StoryState extends State<Story> {
             controller: _pageController,
             onPageChanged: (int page) {
               String audioPath = pages[page].skip(2).take(1).first;
-              if (audioPath.isNotEmpty) {
-                _assetsAudioPlayer.open(Audio(audioPath), autoStart: true);
-              } else {
-                _assetsAudioPlayer.stop();
-              }
+              _assetsAudioPlayer.open(
+                Audio(audioPath),
+                autoStart: true,
+                playInBackground: PlayInBackground.disabledRestoreOnForeground,
+              );
             },
             children: pages.map(
               (content) {
