@@ -19,6 +19,8 @@ class _StoryState extends State<Story> {
   final _assetsAudioPlayer = AssetsAudioPlayer.newPlayer();
   final _assetsAudioPlayerBg = AssetsAudioPlayer.newPlayer();
 
+  final double volumeBg = 0.05;
+
   _StoryState() {
     _assetsAudioPlayer.open(
       Audio('assets/audios/cover.mp3'),
@@ -28,7 +30,7 @@ class _StoryState extends State<Story> {
 
     _assetsAudioPlayerBg.open(
       Audio('assets/audios/bgMusic.mp3'),
-      volume: 0.05,
+      volume: volumeBg,
       autoStart: true,
       playInBackground: PlayInBackground.disabledRestoreOnForeground,
     );
@@ -87,6 +89,8 @@ class _StoryState extends State<Story> {
                   volume: volume,
                   onChange: (v) {
                     _assetsAudioPlayer.setVolume(v);
+                    _assetsAudioPlayerBg.setVolume(
+                        AssetsAudioPlayer.maxVolume == v ? volumeBg : v);
                   },
                 );
               },
