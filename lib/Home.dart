@@ -72,15 +72,15 @@ class HomePage extends StatelessWidget {
               },
             ),
           ),
-          Align(
-            alignment: Alignment.topRight,
-            child: SettingsButton(
-              iconSize: SizeConfig.safeBlockHorizontal * 5,
-              onPressed: () {
-                Navigator.pushNamed(context, '/games');
-              },
-            ),
-          ),
+          // Align(
+          //   alignment: Alignment.topRight,
+          //   child: SettingsButton(
+          //     iconSize: SizeConfig.safeBlockHorizontal * 5,
+          //     onPressed: () {
+          //       Navigator.pushNamed(context, '/games');
+          //     },
+          //   ),
+          // ),
         ],
       ),
     );

@@ -24,7 +24,7 @@ class PageSlide extends StatelessWidget {
           decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage(path),
-              fit: BoxFit.cover,
+              fit: BoxFit.contain,
             ),
           ),
         ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hector_app/common/BackToHomeButton.dart';
+import 'package:hector_app/common/IconSoundButton.dart';
 import 'package:hector_app/common/OnlyOnePointerRecognizer.dart';
 import 'package:hector_app/common/SizeConfig.dart';
 
@@ -97,7 +97,6 @@ class _WriteScreenState extends State<WriteScreen> {
 
   void panEnd(DragEndDetails details) {
     kanjiPainter.endStroke();
-    
   }
 
   @override
@@ -136,7 +135,9 @@ class _WriteScreenState extends State<WriteScreen> {
           ),
           Align(
             alignment: Alignment.topLeft,
-            child: BackToHomeButton(
+            child: IconSoundButton(
+              iconTitle: 'Back to home',
+              iconPath: 'assets/images/icons/home.svg',
               iconSize: SizeConfig.safeBlockHorizontal * 5,
               onPressed: () {
                 Navigator.pop(context);

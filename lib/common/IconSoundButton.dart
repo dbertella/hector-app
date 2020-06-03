@@ -2,11 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hector_app/common/SoundMixin.dart';
 
-class BackToHomeButton extends StatelessWidget with Sound {
+class IconSoundButton extends StatelessWidget with Sound {
+  final String iconTitle;
+  final String iconPath;
   final double iconSize;
   final VoidCallback onPressed;
 
-  const BackToHomeButton({
+  const IconSoundButton({
+    @required this.iconTitle,
+    @required this.iconPath,
     @required this.iconSize,
     @required this.onPressed,
   });
@@ -22,10 +26,10 @@ class BackToHomeButton extends StatelessWidget with Sound {
           playButtonSound();
         },
         icon: SvgPicture.asset(
-          'assets/images/icons/home.svg',
-          semanticsLabel: 'Back to home',
+          iconPath,
+          semanticsLabel: iconTitle,
         ),
-        tooltip: 'Back to home',
+        tooltip: iconTitle,
       ),
     );
   }

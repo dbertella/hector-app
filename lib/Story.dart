@@ -1,6 +1,6 @@
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
-import 'package:hector_app/common/BackToHomeButton.dart';
+import 'package:hector_app/common/IconSoundButton.dart';
 import 'package:hector_app/common/PageSlide.dart';
 import 'package:hector_app/common/SizeConfig.dart';
 import 'package:hector_app/common/ValumeSelector.dart';
@@ -57,6 +57,7 @@ class _StoryState extends State<Story> {
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
+      backgroundColor: Colors.grey[900],
       body: Stack(
         children: <Widget>[
           PageView(
@@ -105,10 +106,44 @@ class _StoryState extends State<Story> {
           ),
           Align(
             alignment: Alignment.topLeft,
-            child: BackToHomeButton(
+            child: IconSoundButton(
+              iconTitle: 'Back to home',
+              iconPath: 'assets/images/icons/home.svg',
               iconSize: SizeConfig.safeBlockHorizontal * 5,
               onPressed: () {
                 Navigator.pop(context);
+              },
+            ),
+          ),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: IconSoundButton(
+              iconTitle: 'Previous Page',
+              iconPath: 'assets/images/icons/prev.svg',
+              iconSize: SizeConfig.safeBlockHorizontal * 10,
+              onPressed: () {
+                if (_pageController.hasClients) {
+                  _pageController.previousPage(
+                    duration: const Duration(milliseconds: 500),
+                    curve: Curves.easeInOut,
+                  );
+                }
+              },
+            ),
+          ),
+          Align(
+            alignment: Alignment.centerRight,
+            child: IconSoundButton(
+              iconTitle: 'Next Page',
+              iconPath: 'assets/images/icons/next.svg',
+              iconSize: SizeConfig.safeBlockHorizontal * 10,
+              onPressed: () {
+                if (_pageController.hasClients) {
+                  _pageController.nextPage(
+                    duration: const Duration(milliseconds: 500),
+                    curve: Curves.easeInOut,
+                  );
+                }
               },
             ),
           ),

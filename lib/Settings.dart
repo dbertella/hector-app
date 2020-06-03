@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hector_app/common/BackToHomeButton.dart';
+import 'package:hector_app/common/IconSoundButton.dart';
 import 'package:hector_app/common/SizeConfig.dart';
 
 class Settings extends StatelessWidget {
@@ -74,7 +74,9 @@ class Settings extends StatelessWidget {
           ),
           Align(
             alignment: Alignment.topLeft,
-            child: BackToHomeButton(
+            child: IconSoundButton(
+              iconTitle: 'Back to home',
+              iconPath: 'assets/images/icons/home.svg',
               iconSize: SizeConfig.safeBlockHorizontal * 5,
               onPressed: () {
                 Navigator.pop(context);
