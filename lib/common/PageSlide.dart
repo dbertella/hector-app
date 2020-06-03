@@ -5,11 +5,13 @@ class PageSlide extends StatelessWidget {
   final String path;
   final String text;
   final double fontSize;
+  final bool alignToBottom;
 
   PageSlide({
     @required this.path,
     @required this.text,
     @required this.fontSize,
+    @required this.alignToBottom,
   });
 
   @override
@@ -29,7 +31,9 @@ class PageSlide extends StatelessWidget {
         text.isEmpty
             ? SizedBox.shrink()
             : Align(
-                alignment: Alignment.topCenter,
+                alignment: alignToBottom
+                    ? Alignment.bottomCenter
+                    : Alignment.topCenter,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(

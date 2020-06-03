@@ -18,6 +18,7 @@ class _StoryState extends State<Story> {
   PageController _pageController;
   final _assetsAudioPlayer = AssetsAudioPlayer.newPlayer();
   final _assetsAudioPlayerBg = AssetsAudioPlayer.newPlayer();
+  bool _alignToBottom;
 
   final double volumeBg = 0.05;
 
@@ -40,6 +41,7 @@ class _StoryState extends State<Story> {
   @override
   void initState() {
     _pageController = PageController();
+    _alignToBottom = false;
     super.initState();
   }
 
@@ -61,6 +63,10 @@ class _StoryState extends State<Story> {
             controller: _pageController,
             onPageChanged: (int page) {
               String audioPath = pages[page].skip(2).take(1).first;
+              setState(() {
+                _alignToBottom = pages[page].skip(3).take(1).first == 'bottom';
+              });
+
               _assetsAudioPlayer.open(
                 Audio(audioPath),
                 autoStart: true,
@@ -73,6 +79,7 @@ class _StoryState extends State<Story> {
                   path: content.take(1).first,
                   text: content.skip(1).take(1).first,
                   fontSize: SizeConfig.safeBlockHorizontal * 2,
+                  alignToBottom: _alignToBottom,
                 );
               },
             ).toList(),
