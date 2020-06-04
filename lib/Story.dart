@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
 import 'package:hector_app/common/IconSoundButton.dart';
+import 'package:hector_app/common/NavigationButton.dart';
 import 'package:hector_app/common/PageSlide.dart';
 import 'package:hector_app/common/SizeConfig.dart';
 import 'package:hector_app/common/ValumeSelector.dart';
@@ -19,6 +22,10 @@ class _StoryState extends State<Story> {
   final _assetsAudioPlayer = AssetsAudioPlayer.newPlayer();
   final _assetsAudioPlayerBg = AssetsAudioPlayer.newPlayer();
   bool _alignToBottom;
+  bool _isFirstPage;
+  bool _isLastPage;
+  bool _isVisible;
+  Timer _timer;
 
   final double volumeBg = 0.05;
 
@@ -42,7 +49,19 @@ class _StoryState extends State<Story> {
   void initState() {
     _pageController = PageController();
     _alignToBottom = false;
+    _isFirstPage = true;
+    _isLastPage = false;
+    _isVisible = false;
+    _showButtonsAfterDelay(const Duration(seconds: 5));
     super.initState();
+  }
+
+  void _showButtonsAfterDelay(duration) {
+    _timer = Timer(duration, () {
+      setState(() {
+        _isVisible = true;
+      });
+    });
   }
 
   @override
@@ -50,6 +69,7 @@ class _StoryState extends State<Story> {
     _pageController.dispose();
     _assetsAudioPlayer.dispose();
     _assetsAudioPlayerBg.dispose();
+    _timer.cancel();
     super.dispose();
   }
 
@@ -64,10 +84,15 @@ class _StoryState extends State<Story> {
             controller: _pageController,
             onPageChanged: (int page) {
               String audioPath = pages[page].skip(2).take(1).first;
+              int currentPage = _pageController.page.round();
               setState(() {
+                _isFirstPage = currentPage == 0;
+                _isLastPage = currentPage == pages.length - 1;
                 _alignToBottom = pages[page].skip(3).take(1).first == 'bottom';
+                _isVisible = false;
               });
-
+              _timer.cancel();
+              _showButtonsAfterDelay(const Duration(seconds: 15));
               _assetsAudioPlayer.open(
                 Audio(audioPath),
                 autoStart: true,
@@ -115,38 +140,50 @@ class _StoryState extends State<Story> {
               },
             ),
           ),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: IconSoundButton(
-              iconTitle: 'Previous Page',
-              iconPath: 'assets/images/icons/prev.svg',
-              iconSize: SizeConfig.safeBlockHorizontal * 10,
-              onPressed: () {
-                if (_pageController.hasClients) {
-                  _pageController.previousPage(
-                    duration: const Duration(milliseconds: 500),
-                    curve: Curves.easeInOut,
-                  );
-                }
-              },
-            ),
-          ),
-          Align(
-            alignment: Alignment.centerRight,
-            child: IconSoundButton(
-              iconTitle: 'Next Page',
-              iconPath: 'assets/images/icons/next.svg',
-              iconSize: SizeConfig.safeBlockHorizontal * 10,
-              onPressed: () {
-                if (_pageController.hasClients) {
-                  _pageController.nextPage(
-                    duration: const Duration(milliseconds: 500),
-                    curve: Curves.easeInOut,
-                  );
-                }
-              },
-            ),
-          ),
+          _isFirstPage
+              ? SizedBox.shrink()
+              : AnimatedOpacity(
+                  opacity: _isVisible ? 1.0 : 0.0,
+                  duration: Duration(milliseconds: 500),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: NavigationButton(
+                      iconTitle: 'Previous Page',
+                      iconPath: 'assets/images/icons/prev.svg',
+                      iconSize: SizeConfig.safeBlockHorizontal * 7.5,
+                      onPressed: () {
+                        if (_pageController.hasClients) {
+                          _pageController.previousPage(
+                            duration: const Duration(milliseconds: 500),
+                            curve: Curves.easeInOut,
+                          );
+                        }
+                      },
+                    ),
+                  ),
+                ),
+          _isLastPage
+              ? SizedBox.shrink()
+              : AnimatedOpacity(
+                  opacity: _isVisible ? 1.0 : 0.0,
+                  duration: Duration(milliseconds: 500),
+                  child: Align(
+                    alignment: Alignment.centerRight,
+                    child: NavigationButton(
+                      iconTitle: 'Next Page',
+                      iconPath: 'assets/images/icons/next.svg',
+                      iconSize: SizeConfig.safeBlockHorizontal * 7.5,
+                      onPressed: () {
+                        if (_pageController.hasClients) {
+                          _pageController.nextPage(
+                            duration: const Duration(milliseconds: 500),
+                            curve: Curves.easeInOut,
+                          );
+                        }
+                      },
+                    ),
+                  ),
+                ),
         ],
       ),
     );
