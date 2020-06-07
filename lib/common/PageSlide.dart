@@ -34,22 +34,20 @@ class PageSlide extends StatelessWidget {
                 alignment: alignToBottom
                     ? Alignment.bottomCenter
                     : Alignment.topCenter,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.white.withOpacity(0.9),
-                    ),
-                    child: Padding(
-                      padding: EdgeInsets.all(12.0),
-                      child: Text(
-                        text,
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.gloriaHallelujah(
-                          fontSize: fontSize,
-                          color: Colors.black, // Colors.blueGrey
-                        ),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.white.withOpacity(0.9),
+                  ),
+                  child: Padding(
+                    padding:
+                        EdgeInsets.symmetric(vertical: 4.0, horizontal: 12.0),
+                    child: Text(
+                      text,
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.gloriaHallelujah(
+                        fontSize: fontSize,
+                        color: Colors.black, // Colors.blueGrey
                       ),
                     ),
                   ),
