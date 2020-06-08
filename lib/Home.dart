@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hector_app/ButterflyAnimation.dart';
 import 'package:hector_app/common/HectorStoryButton.dart';
-import 'package:hector_app/common/SettingsButton.dart';
+import 'package:hector_app/common/IconSoundButton.dart';
 import 'package:hector_app/common/SizeConfig.dart';
 
 class HomePage extends StatelessWidget {
@@ -65,12 +65,13 @@ class HomePage extends StatelessWidget {
           ),
           Align(
             alignment: Alignment.topLeft,
-            child: SettingsButton(
-              iconSize: SizeConfig.safeBlockHorizontal * 5,
-              onPressed: () {
-                Navigator.pushNamed(context, '/settings');
-              },
-            ),
+            child: IconSoundButton(
+                iconTitle: 'Settings',
+                iconPath: 'assets/images/icons/settings.svg',
+                iconSize: SizeConfig.safeBlockHorizontal * 5,
+                onPressed: () {
+                  Navigator.pushNamed(context, '/settings');
+                }),
           ),
           // Align(
           //   alignment: Alignment.topRight,

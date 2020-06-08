@@ -102,8 +102,6 @@ class _StoryState extends State<Story> {
           initialData: true,
           builder: (context, asyncSnapshot) {
             final bool _isVoicePlaying = asyncSnapshot.data;
-            print(_isVoicePlaying);
-            print(context);
             return Stack(
               children: <Widget>[
                 PageView(
