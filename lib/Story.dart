@@ -35,9 +35,9 @@ class _StoryState extends State<Story> {
       Audio('assets/audios/bgMusic.mp3'),
       volume: volumeBg,
       autoStart: true,
+      loop: true,
       playInBackground: PlayInBackground.disabledRestoreOnForeground,
     );
-    _assetsAudioPlayerBg.loop = true;
   }
 
   @override
