@@ -3,6 +3,17 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:hector_app/common/IconSoundButton.dart';
 import 'package:hector_app/common/SizeConfig.dart';
 
+final String text = """© 2020, All credits reserved,
+Written and illustrated by Aurelie Mercier
+Read by Liam Bertella
+Music by Cecilia Fumanelli
+App by Daniele Bertella
+
+You can find a copy of the paperback version
+of the book on Amazon!
+Visit hector.aureliemercier.com
+for more info and news""";
+
 class Settings extends StatelessWidget {
   static String routeName = '/settings';
 
@@ -29,39 +40,7 @@ class Settings extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    '© 2020, All credits reserved',
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.gloriaHallelujah(
-                      fontSize: SizeConfig.safeBlockHorizontal * 2,
-                      color: Colors.black, // Colors.blueGrey
-                    ),
-                  ),
-                  Text(
-                    'Written and illustrated by Aurelie Mercier',
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.gloriaHallelujah(
-                      fontSize: SizeConfig.safeBlockHorizontal * 2,
-                      color: Colors.black, // Colors.blueGrey
-                    ),
-                  ),
-                  Text(
-                    'Read by Liam Bertella',
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.gloriaHallelujah(
-                      fontSize: SizeConfig.safeBlockHorizontal * 2,
-                      color: Colors.black, // Colors.blueGrey
-                    ),
-                  ),
-                  Text(
-                    'Music by Cecilia Fumanelli',
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.gloriaHallelujah(
-                      fontSize: SizeConfig.safeBlockHorizontal * 2,
-                      color: Colors.black, // Colors.blueGrey
-                    ),
-                  ),
-                  Text(
-                    'App by Daniele Bertella',
+                    text,
                     textAlign: TextAlign.center,
                     style: GoogleFonts.gloriaHallelujah(
                       fontSize: SizeConfig.safeBlockHorizontal * 2,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hector_app/ButterflyAnimation.dart';
 import 'package:hector_app/common/HectorStoryButton.dart';
 import 'package:hector_app/common/IconSoundButton.dart';
@@ -55,7 +56,13 @@ class HomePage extends StatelessWidget {
                         },
                         buttonWidth: buttonWidth,
                         buttonHeight: SizeConfig.safeBlockHorizontal * 5,
-                        fontSize: SizeConfig.safeBlockHorizontal * 2,
+                        child: Text(
+                          'Read the story',
+                          style: GoogleFonts.gloriaHallelujah(
+                            fontSize: SizeConfig.safeBlockHorizontal * 2,
+                            color: Colors.black,
+                          ),
+                        ),
                       ),
                     ),
                   ],
