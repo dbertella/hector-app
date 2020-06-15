@@ -9,10 +9,9 @@ Read by Liam Bertella
 Music by Cecilia Fumanelli
 App by Daniele Bertella
 
-You can find a copy of the paperback version
-of the book on Amazon!
+Order your printed copy of Hector on Amazon!
 Visit hector.aureliemercier.com
-for more info and news""";
+for more info and news.""";
 
 class Settings extends StatelessWidget {
   static String routeName = '/settings';
@@ -67,3 +66,44 @@ class Settings extends StatelessWidget {
     );
   }
 }
+
+// Padding(
+//   padding: const EdgeInsets.all(12.0),
+//   child: HectorStoryButton(
+//     onPressed: () {
+//       openBrowserTab(
+//           "https://tinyurl.com/hector-the-little-dinosaur");
+//     },
+//     buttonWidth: 250,
+//     buttonHeight: SizeConfig.safeBlockHorizontal * 5,
+//     child: Text(
+//       'Available on Amazon',
+//       style: GoogleFonts.gloriaHallelujah(
+//         fontSize: SizeConfig.safeBlockHorizontal * 2,
+//         color: Colors.black,
+//       ),
+//     ),
+//   ),
+// ),
+// Padding(
+//   padding: const EdgeInsets.all(12.0),
+//   child:
+//   // _isAdult
+//   //     ? Text('Visit Hector\'s Website')
+//   //     :
+//       HectorStoryButton(
+//           onPressed: () {
+//             openBrowserTab(
+//                 'https://hector.aureliemercier.com/');
+//           },
+//           buttonWidth: 250,
+//           buttonHeight: SizeConfig.safeBlockHorizontal * 5,
+//           child: Text(
+//             'Visit Hector\'s Website',
+//             style: GoogleFonts.gloriaHallelujah(
+//               fontSize: SizeConfig.safeBlockHorizontal * 2,
+//               color: Colors.black,
+//             ),
+//           ),
+//         ),
+// ),
