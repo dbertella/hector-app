@@ -38,3 +38,5 @@ lib/generated_plugin_registrant.dart
 
 *key.properties
 android/app/release/*
+
+api-*.json

@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hector_app/ButterflyAnimation.dart';
 import 'package:hector_app/common/IconSoundButton.dart';
 import 'package:hector_app/common/SizeConfig.dart';
 
-final String text = """© 2020, All credits reserved,
-Written and illustrated by Aurelie Mercier
-Read by Liam Bertella
-Music by Cecilia Fumanelli
-App by Daniele Bertella
+final String text = """© 2020, All credits reserved
+✍️ Written and illustrated by Aurelie Mercier
+🤩 Read by Liam Bertella
+🎵 Music by Cecilia Fumanelli
+🛠 App by Daniele Bertella
 
-Order your printed copy of Hector on Amazon!
-Visit hector.aureliemercier.com
-for more info and news.""";
+📖 Order your printed copy of Hector on Amazon!
+🦕 Visit hector.aureliemercier.com for more info and news.""";
 
 class Settings extends StatelessWidget {
   static String routeName = '/settings';
@@ -24,6 +24,7 @@ class Settings extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: <Widget>[
+          ButterflyAnimation(),
           Container(
             width: double.infinity,
             height: double.infinity,
@@ -33,21 +34,31 @@ class Settings extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    text,
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.gloriaHallelujah(
-                      fontSize: SizeConfig.safeBlockHorizontal * 2,
-                      color: Colors.black, // Colors.blueGrey
+          ),
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black, width: 2.0),
+                    borderRadius: BorderRadius.circular(10),
+                    color: Color(0xccEEEEEE),
+                  ),
+                  child: Padding(
+                    padding:
+                        EdgeInsets.symmetric(vertical: 4.0, horizontal: 12.0),
+                    child: Text(
+                      text,
+                      style: GoogleFonts.gloriaHallelujah(
+                        fontSize: SizeConfig.safeBlockHorizontal * 2,
+                        color: Colors.black, // Colors.blueGrey
+                      ),
                     ),
                   ),
-                ],
-              ),
+                )
+              ],
             ),
           ),
           Align(

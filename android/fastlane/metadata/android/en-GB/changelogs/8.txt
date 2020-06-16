@@ -1,0 +1,4 @@
+- Hector the little dinosaur story 
+- Soundtrack from Cecilia
+- Images are now centered on the screen
+- Added Icons to go to prev and next page and showing them after the voice ends

@@ -44,7 +44,7 @@ class _ButterflyAnimationState extends State<ButterflyAnimation>
   @override
   void dispose() {
     _controller.dispose();
-    _timer.cancel();
+    _timer?.cancel();
     super.dispose();
   }
 
